@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Paul Georgoudis</title>
-<meta name="description" content="Paul Georgoudis. TikTok, Instagram, email, and FundedNext Futures with code GEOO at checkout, and a free Discord community.">
+<meta name="description" content="Paul Georgoudis. TikTok, Instagram, email, a free Discord community, FundedNext Futures with code GEOO and LVLUP Futures with code GEO at checkout.">
 <meta name="theme-color" content="#07070d">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Paul Georgoudis">
-<meta property="og:description" content="TikTok, Instagram, email, and FundedNext Futures with code GEOO at checkout, and a free Discord community.">
+<meta property="og:description" content="TikTok, Instagram, email, a free Discord community, FundedNext Futures with code GEOO and LVLUP Futures with code GEO at checkout.">
 <meta name="twitter:card" content="summary">
 <script type="application/ld+json">
 {
@@ -37,12 +37,12 @@
   --muted:#8b93a7;
   --fn:#635bff;        /* FundedNext brand purple */
   --fn-soft:#a5a1ff;
-  --btn-h:58px;
+  --btn-h:51px;
   /* vertical sizes scale with the visible screen height (svh = with the browser bars showing),
-     so the whole page, both feature buttons included, fits on one screen down to ~550px tall */
+     so the whole page, feature buttons included, fits on one screen on common phones and laptops */
   --vh:1vh;
-  --avatar-max:124px;
-  --profile-gap:34px;
+  --avatar-max:108px;
+  --profile-gap:30px;
 }
 @supports (height:1svh){:root{--vh:1svh}}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -63,32 +63,32 @@ a{color:inherit}
   min-height:100svh; /* accounts for mobile browser chrome */
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   padding:
-    max(clamp(20px, calc(var(--vh) * 6.6), 56px), env(safe-area-inset-top))
+    max(clamp(20px, calc(var(--vh) * 5.6), 56px), env(safe-area-inset-top))
     max(18px, env(safe-area-inset-right))
     max(clamp(20px, calc(var(--vh) * 5.6), 48px), env(safe-area-inset-bottom))
     max(18px, env(safe-area-inset-left));
 }
 
 /* PROFILE */
-.profile{display:flex;flex-direction:column;align-items:center;text-align:center;margin-bottom:clamp(18px, calc(var(--vh) * 4.4), var(--profile-gap))}
+.profile{display:flex;flex-direction:column;align-items:center;text-align:center;margin-bottom:clamp(14px, calc(var(--vh) * 3.4), var(--profile-gap))}
 .avatar{
-  --size:clamp(84px, calc(var(--vh) * 15), var(--avatar-max));
+  --size:clamp(64px, calc(var(--vh) * 12), var(--avatar-max));
   width:var(--size);height:var(--size);border-radius:50%;
-  padding:4px;
+  padding:3.5px;
   border:1px solid transparent;
   background:linear-gradient(var(--bg),var(--bg)) padding-box,
              linear-gradient(135deg,rgba(255,255,255,.55),rgba(255,255,255,.08) 55%,rgba(255,255,255,.3)) border-box;
-  margin-bottom:clamp(12px, calc(var(--vh) * 2.4), 20px);
+  margin-bottom:clamp(10px, calc(var(--vh) * 2.1), 18px);
 }
 .avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover}
 .profile h1{
   font-family:'Space Grotesk',sans-serif;
-  font-size:clamp(1.85rem,7.4vw,2.35rem);
+  font-size:clamp(1.65rem,6.5vw,2.05rem);
   font-weight:700;letter-spacing:-.02em;line-height:1.1;
 }
 
 /* LINKS */
-.links{width:100%;max-width:420px;display:flex;flex-direction:column;gap:12px}
+.links{width:100%;max-width:370px;display:flex;flex-direction:column;gap:11px}
 
 /* same button language as cooperpaixao.com: solid fill on padding-box, brand gradient on border-box */
 .btn{
@@ -97,9 +97,9 @@ a{color:inherit}
   --inner:rgba(255,255,255,.07);  /* inner glow, left half */
   --inner2:var(--inner);          /* inner glow, right half */
   --ico:var(--text);
-  display:flex;align-items:center;justify-content:center;gap:10px;
+  display:flex;align-items:center;justify-content:center;gap:9px;
   width:100%;height:var(--btn-h);
-  padding:0 18px;border-radius:14px;
+  padding:0 16px;border-radius:12px;
   border:1px solid transparent;
   background:
     radial-gradient(75% 150% at 25% 135%,var(--inner),transparent 70%) padding-box,
@@ -107,15 +107,15 @@ a{color:inherit}
     linear-gradient(var(--fill),var(--fill)) padding-box,
     var(--grad) border-box;
   color:var(--text);text-decoration:none;
-  font:500 1rem/1 'Inter',sans-serif;
+  font:500 .9rem/1 'Inter',sans-serif;
   cursor:pointer;
   transition:transform .18s ease,box-shadow .18s ease;
 }
-.btn svg{width:21px;height:21px;flex-shrink:0;color:var(--ico)}
+.btn svg{width:19px;height:19px;flex-shrink:0;color:var(--ico)}
 .btn:focus-visible{outline:2px solid var(--fn-soft);outline-offset:3px}
 .btn:active{transform:scale(.985)}
 @media (hover:hover){
-  .btn:hover{transform:translateY(-3px);box-shadow:0 10px 28px var(--glow)}
+  .btn:hover{transform:translateY(-3px);box-shadow:0 9px 24px var(--glow)}
 }
 
 .btn-tt{
@@ -131,9 +131,9 @@ a{color:inherit}
 }
 .btn-mail{--grad:linear-gradient(135deg,#fff,#7d8496);--glow:rgba(255,255,255,.18)}
 
-.btn .verified{width:17px;height:17px;margin-left:-4px}
+.btn .verified{width:15px;height:15px;margin-left:-3px}
 
-/* FEATURE BUTTONS (Discord, FundedNext): double height, a headline over a subline,
+/* FEATURE BUTTONS (Discord, FundedNext, LVLUP): up to double height, a headline over a subline,
    brand glow from below and a light sweep on hover */
 .btn-feature{
   --feat-fill:#0b0a1a;
@@ -141,19 +141,20 @@ a{color:inherit}
   --sweep:rgba(165,161,255,.16);
   --sub:#b9b6e6;
   position:relative;overflow:hidden;isolation:isolate;
-  flex-direction:column;gap:12px;
+  flex-direction:column;gap:10px;
   height:auto;
-  min-height:clamp(calc(var(--btn-h) * 1.5), calc(var(--vh) * 13.4), calc(var(--btn-h) * 2));
-  padding-block:10px;
-  border-radius:18px;
+  min-height:clamp(calc(var(--btn-h) * 1.45), calc(var(--vh) * 11.4), calc(var(--btn-h) * 2));
+  padding-block:9px;
+  border-radius:16px;
   background:
     radial-gradient(120% 140% at 50% 120%,var(--feat-glow),transparent 60%) padding-box,
     linear-gradient(var(--feat-fill),var(--feat-fill)) padding-box,
     var(--grad) border-box;
 }
-/* set the feature pair apart from the plain buttons above */
-.btn:not(.btn-feature) + .btn-feature{margin-top:10px}
-.btn-feature .sub{font-size:.86rem;font-weight:500;color:var(--sub);letter-spacing:.01em}
+/* set the feature group apart from the plain buttons above */
+.btn:not(.btn-feature) + .btn-feature{margin-top:8px}
+.btn-feature img{width:min(76%,255px);height:auto}
+.btn-feature .sub{font-size:.8rem;font-weight:500;color:var(--sub);letter-spacing:.01em}
 .btn-feature .sub b{font-family:'Space Grotesk',sans-serif;font-weight:700;color:#fff}
 .btn-feature::after{
   content:'';position:absolute;inset:0;z-index:-1;
@@ -164,7 +165,10 @@ a{color:inherit}
   .btn-feature:hover::after{transform:translateX(100%);transition:transform .75s ease}
 }
 
-/* DISCORD: icon + headline, invite link underneath */
+/* DISCORD: icon + headline, invite link underneath, and a small light that keeps
+   travelling around the border (a rotating conic gradient drawn under the border only),
+   with a soft glow just inside the edge that follows it (.edge: the same light, blurred) */
+@property --edge{syntax:'<angle>';inherits:true;initial-value:0deg}
 .btn-feature.btn-dc{
   --grad:linear-gradient(135deg,#b5baff,#5865f2 35%,#232861 65%,#8e96ff);
   --glow:rgba(88,101,242,.38);
@@ -173,13 +177,29 @@ a{color:inherit}
   --sweep:rgba(158,165,255,.16);
   --sub:#b4b9e8;
   --ico:#8b94ff;
+  background:
+    radial-gradient(120% 140% at 50% 120%,var(--feat-glow),transparent 60%) padding-box,
+    linear-gradient(var(--feat-fill),var(--feat-fill)) padding-box,
+    conic-gradient(from var(--edge),transparent 0 62%,rgba(150,160,255,.35) 80%,rgba(214,218,255,.9) 89%,#fff 91.5%,transparent 94%) border-box,
+    var(--grad) border-box;
+  border-width:1.5px;
+}
+.btn-feature.btn-dc.rise{animation:rise .6s cubic-bezier(.2,.7,.2,1) backwards,edge 5s linear infinite}
+@keyframes edge{to{--edge:360deg}}
+.btn-dc .edge{position:absolute;inset:0;z-index:-1;border-radius:inherit;filter:blur(4px);pointer-events:none}
+.btn-dc .edge::before{
+  content:'';position:absolute;inset:0;border-radius:inherit;padding:3px;
+  background:conic-gradient(from var(--edge),transparent 0 81%,rgba(150,160,255,.4) 87%,rgba(225,228,255,.95) 90.5%,transparent 93.5%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
 }
 .btn-dc .headline{
-  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 11px;
-  font:600 clamp(1.06rem,4.9vw,1.24rem)/1.1 'Space Grotesk',sans-serif;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:5px 10px;
+  font:600 clamp(.95rem,4.3vw,1.1rem)/1.1 'Space Grotesk',sans-serif;
   letter-spacing:-.01em;text-align:center;text-wrap:balance;
 }
-.btn-dc .headline svg{width:30px;height:30px}
+.btn-dc .headline svg{width:26px;height:26px}
 .btn-dc .sub b{letter-spacing:.02em}
 
 /* FUNDEDNEXT: logo + code (the link auto-applies GEOO) */
@@ -187,8 +207,18 @@ a{color:inherit}
   --grad:linear-gradient(135deg,#b3afff,var(--fn) 35%,#231f63 65%,#8f89ff);
   --glow:rgba(99,91,255,.38);
 }
-.btn-fn img{width:min(78%,290px);height:auto}
 .btn-fn .sub b{letter-spacing:.12em}
+
+/* LVLUP FUTURES: logo + code GEO, in LVLUP's sky blue */
+.btn-feature.btn-lv{
+  --grad:linear-gradient(135deg,#c2eaff,#6ecaff 30%,#1c5a80 62%,#0b2638 76%,#6ecaff);
+  --glow:rgba(63,159,216,.36);
+  --feat-fill:#03090e;
+  --feat-glow:rgba(63,159,216,.3);
+  --sweep:rgba(110,202,255,.16);
+  --sub:#a9cde3;
+}
+.btn-lv .sub b{letter-spacing:.12em}
 
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
@@ -196,26 +226,26 @@ a{color:inherit}
 .rise{animation:rise .6s cubic-bezier(.2,.7,.2,1) backwards}
 @keyframes rise{from{opacity:0;transform:translateY(14px)}}
 @media (prefers-reduced-motion:reduce){
-  .rise{animation:none}
+  .rise,.btn-feature.btn-dc.rise{animation:none}
   .btn,.btn-feature::after,.btn-feature:hover::after{transition:none}
 }
 
 @media (min-width:600px){
-  :root{--btn-h:60px;--avatar-max:136px;--profile-gap:38px}
+  :root{--btn-h:53px;--avatar-max:120px;--profile-gap:34px}
 }
 @media (max-width:350px){
-  :root{--btn-h:54px;--avatar-max:108px}
-  .btn{font-size:.94rem}
+  :root{--btn-h:48px;--avatar-max:96px}
+  .btn{font-size:.86rem}
 }
 @media (max-width:310px){
-  .btn-dc .headline{font-size:.9rem;column-gap:8px}
-  .btn-dc .headline svg{width:24px;height:24px}
+  .btn-dc .headline{font-size:.8rem;column-gap:7px}
+  .btn-dc .headline svg{width:22px;height:22px}
 }
 /* short screens (iPhone SE, Safari with its bars showing, small laptops, landscape):
    slimmer buttons so everything still fits on one screen; comes last so it wins over the width rules */
 @media (max-height:700px){
-  :root{--btn-h:52px}
-  .links{gap:10px}
+  :root{--btn-h:46px}
+  .links{gap:9px}
 }
 </style>
 </head>
@@ -259,6 +289,7 @@ a{color:inherit}
     </a>
 
     <a class="btn btn-feature btn-dc rise" style="animation-delay:.38s" href="https://discord.gg/geotrades" target="_blank" rel="noopener">
+      <span class="edge" aria-hidden="true"></span>
       <span class="headline">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>
         <span>Free Discord Community</span>
@@ -269,6 +300,11 @@ a{color:inherit}
     <a class="btn btn-feature btn-fn rise" style="animation-delay:.46s" href="https://fundednext.com/futures/?fpr=GEOO" target="_blank" rel="noopener sponsored">
       <img src="images/fundednext-futures.png" alt="FundedNext Futures" width="999" height="105">
       <span class="sub">Code <b>GEOO</b> at checkout</span>
+    </a>
+
+    <a class="btn btn-feature btn-lv rise" style="animation-delay:.54s" href="https://lvlupfutures.com/" target="_blank" rel="noopener sponsored">
+      <img src="images/lvlup-futures.svg" alt="LVLUP Futures" width="598" height="62">
+      <span class="sub">Code <b>GEO</b> at checkout</span>
     </a>
 
 

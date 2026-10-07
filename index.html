@@ -142,7 +142,9 @@ a{color:inherit}
   --sub:#b9b6e6;
   position:relative;overflow:hidden;isolation:isolate;
   flex-direction:column;gap:12px;
-  height:clamp(calc(var(--btn-h) * 1.5), calc(var(--vh) * 13.4), calc(var(--btn-h) * 2));
+  height:auto;
+  min-height:clamp(calc(var(--btn-h) * 1.5), calc(var(--vh) * 13.4), calc(var(--btn-h) * 2));
+  padding-block:10px;
   border-radius:18px;
   background:
     radial-gradient(120% 140% at 50% 120%,var(--feat-glow),transparent 60%) padding-box,
@@ -173,9 +175,9 @@ a{color:inherit}
   --ico:#8b94ff;
 }
 .btn-dc .headline{
-  display:flex;align-items:center;gap:11px;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 11px;
   font:600 clamp(1.06rem,4.9vw,1.24rem)/1.1 'Space Grotesk',sans-serif;
-  letter-spacing:-.01em;white-space:nowrap;
+  letter-spacing:-.01em;text-align:center;text-wrap:balance;
 }
 .btn-dc .headline svg{width:30px;height:30px}
 .btn-dc .sub b{letter-spacing:.02em}
@@ -195,7 +197,7 @@ a{color:inherit}
 @keyframes rise{from{opacity:0;transform:translateY(14px)}}
 @media (prefers-reduced-motion:reduce){
   .rise{animation:none}
-  .btn,.btn-feature::after{transition:none}
+  .btn,.btn-feature::after,.btn-feature:hover::after{transition:none}
 }
 
 @media (min-width:600px){
@@ -204,6 +206,10 @@ a{color:inherit}
 @media (max-width:350px){
   :root{--btn-h:54px;--avatar-max:108px}
   .btn{font-size:.94rem}
+}
+@media (max-width:310px){
+  .btn-dc .headline{font-size:.9rem;column-gap:8px}
+  .btn-dc .headline svg{width:24px;height:24px}
 }
 /* short screens (iPhone SE, Safari with its bars showing, small laptops, landscape):
    slimmer buttons so everything still fits on one screen; comes last so it wins over the width rules */
@@ -255,7 +261,7 @@ a{color:inherit}
     <a class="btn btn-feature btn-dc rise" style="animation-delay:.38s" href="https://discord.gg/geotrades" target="_blank" rel="noopener">
       <span class="headline">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>
-        Free Discord Community
+        <span>Free Discord Community</span>
       </span>
       <span class="sub">discord.gg/<b>geotrades</b></span>
     </a>

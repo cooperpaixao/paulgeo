@@ -37,10 +37,14 @@
   --muted:#8b93a7;
   --fn:#635bff;        /* FundedNext brand purple */
   --fn-soft:#a5a1ff;
-  --btn-h:51px;
-  /* vertical sizes scale with the visible screen height (svh = with the browser bars showing),
-     so the whole page, feature buttons included, fits on one screen on common phones and laptops */
+  /* vertical sizes scale with the visible screen height (svh = with the browser bars showing,
+     e.g. inside Instagram's or TikTok's in-app browser), so the whole page fits on one screen
+     and loads centred on common phones and laptops */
   --vh:1vh;
+  --btn-max:51px;
+  --btn-h:clamp(44px, calc(var(--vh) * 7), var(--btn-max));
+  --btn-gap:clamp(8px, calc(var(--vh) * 1.4), 11px);          /* between buttons in a group */
+  --group-gap:clamp(14px, calc(var(--vh) * 3.2), 28px);       /* between socials / Discord / funded accounts */
   --avatar-max:108px;
   --profile-gap:30px;
 }
@@ -63,16 +67,16 @@ a{color:inherit}
   min-height:100svh; /* accounts for mobile browser chrome */
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   padding:
-    max(clamp(20px, calc(var(--vh) * 5.6), 56px), env(safe-area-inset-top))
+    max(clamp(16px, calc(var(--vh) * 6.5 - 13px), 52px), env(safe-area-inset-top))
     max(18px, env(safe-area-inset-right))
-    max(clamp(20px, calc(var(--vh) * 5.6), 48px), env(safe-area-inset-bottom))
+    max(clamp(16px, calc(var(--vh) * 6.5 - 13px), 52px), env(safe-area-inset-bottom))
     max(18px, env(safe-area-inset-left));
 }
 
 /* PROFILE */
 .profile{display:flex;flex-direction:column;align-items:center;text-align:center;margin-bottom:clamp(14px, calc(var(--vh) * 3.4), var(--profile-gap))}
 .avatar{
-  --size:clamp(64px, calc(var(--vh) * 12), var(--avatar-max));
+  --size:clamp(56px, calc(var(--vh) * 16 - 30px), var(--avatar-max));
   width:var(--size);height:var(--size);border-radius:50%;
   padding:3.5px;
   border:1px solid transparent;
@@ -88,7 +92,8 @@ a{color:inherit}
 }
 
 /* LINKS */
-.links{width:100%;max-width:370px;display:flex;flex-direction:column;gap:11px}
+.links{width:100%;max-width:370px;display:flex;flex-direction:column;gap:var(--group-gap)}
+.group{display:flex;flex-direction:column;gap:var(--btn-gap)}
 
 /* same button language as cooperpaixao.com: solid fill on padding-box, brand gradient on border-box */
 .btn{
@@ -141,7 +146,7 @@ a{color:inherit}
   --sweep:rgba(165,161,255,.16);
   --sub:#b9b6e6;
   position:relative;overflow:hidden;isolation:isolate;
-  flex-direction:column;gap:10px;
+  flex-direction:column;gap:clamp(6px, calc(var(--vh) * 1.5), 10px);
   height:auto;
   min-height:clamp(calc(var(--btn-h) * 1.45), calc(var(--vh) * 11.4), calc(var(--btn-h) * 2));
   padding-block:9px;
@@ -151,8 +156,6 @@ a{color:inherit}
     linear-gradient(var(--feat-fill),var(--feat-fill)) padding-box,
     var(--grad) border-box;
 }
-/* set the feature group apart from the plain buttons above */
-.btn:not(.btn-feature) + .btn-feature{margin-top:8px}
 .btn-feature img{width:min(76%,255px);height:auto}
 .btn-feature .sub{font-size:.8rem;font-weight:500;color:var(--sub);letter-spacing:.01em}
 .btn-feature .sub b{font-family:'Space Grotesk',sans-serif;font-weight:700;color:#fff}
@@ -165,22 +168,23 @@ a{color:inherit}
   .btn-feature:hover::after{transform:translateX(100%);transition:transform .75s ease}
 }
 
-/* DISCORD: icon + headline, invite link underneath, and a small light that keeps
+/* DISCORD: in the purple of the Geos Community logo (#9226f9 / #7a1ee3 / #5713b7), icon kept
+   in Discord's own colour; headline, invite link underneath, and a small light that keeps
    travelling around the border (a rotating conic gradient drawn under the border only),
    with a soft glow just inside the edge that follows it (.edge: the same light, blurred) */
 @property --edge{syntax:'<angle>';inherits:true;initial-value:0deg}
 .btn-feature.btn-dc{
-  --grad:linear-gradient(135deg,#b5baff,#5865f2 35%,#232861 65%,#8e96ff);
-  --glow:rgba(88,101,242,.38);
-  --feat-fill:#0a0b1c;
-  --feat-glow:rgba(88,101,242,.36);
-  --sweep:rgba(158,165,255,.16);
-  --sub:#b4b9e8;
+  --grad:linear-gradient(135deg,#cc9eff,#9226f9 35%,#3b0d7d 65%,#a457ff);
+  --glow:rgba(146,38,249,.4);
+  --feat-fill:#0d0719;
+  --feat-glow:rgba(122,30,227,.42);
+  --sweep:rgba(196,150,255,.16);
+  --sub:#c4b2ea;
   --ico:#8b94ff;
   background:
     radial-gradient(120% 140% at 50% 120%,var(--feat-glow),transparent 60%) padding-box,
     linear-gradient(var(--feat-fill),var(--feat-fill)) padding-box,
-    conic-gradient(from var(--edge),transparent 0 62%,rgba(150,160,255,.35) 80%,rgba(214,218,255,.9) 89%,#fff 91.5%,transparent 94%) border-box,
+    conic-gradient(from var(--edge),transparent 0 62%,rgba(170,90,255,.4) 80%,rgba(226,204,255,.92) 89%,#fff 91.5%,transparent 94%) border-box,
     var(--grad) border-box;
   border-width:1.5px;
 }
@@ -189,7 +193,7 @@ a{color:inherit}
 .btn-dc .edge{position:absolute;inset:0;z-index:-1;border-radius:inherit;filter:blur(4px);pointer-events:none}
 .btn-dc .edge::before{
   content:'';position:absolute;inset:0;border-radius:inherit;padding:3px;
-  background:conic-gradient(from var(--edge),transparent 0 81%,rgba(150,160,255,.4) 87%,rgba(225,228,255,.95) 90.5%,transparent 93.5%);
+  background:conic-gradient(from var(--edge),transparent 0 81%,rgba(160,80,255,.45) 87%,rgba(232,214,255,.95) 90.5%,transparent 93.5%);
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
   -webkit-mask-composite:xor;
   mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
@@ -231,21 +235,15 @@ a{color:inherit}
 }
 
 @media (min-width:600px){
-  :root{--btn-h:53px;--avatar-max:120px;--profile-gap:34px}
+  :root{--btn-max:53px;--avatar-max:120px;--profile-gap:34px}
 }
 @media (max-width:350px){
-  :root{--btn-h:48px;--avatar-max:96px}
+  :root{--btn-max:48px;--avatar-max:96px}
   .btn{font-size:.86rem}
 }
 @media (max-width:310px){
   .btn-dc .headline{font-size:.8rem;column-gap:7px}
   .btn-dc .headline svg{width:22px;height:22px}
-}
-/* short screens (iPhone SE, Safari with its bars showing, small laptops, landscape):
-   slimmer buttons so everything still fits on one screen; comes last so it wins over the width rules */
-@media (max-height:700px){
-  :root{--btn-h:46px}
-  .links{gap:9px}
 }
 </style>
 </head>
@@ -262,52 +260,56 @@ a{color:inherit}
 
   <nav class="links" aria-label="Links">
 
-    <a class="btn btn-ig rise" style="animation-delay:.18s" href="https://www.instagram.com/_paulgeorgoudis/" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.3"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></svg>
-      <span><span class="sr-only">Instagram </span>@_paulgeorgoudis</span>
-      <!-- Instagram's own verified badge (path taken from instagram.com); white check sits behind the cut-out -->
-      <svg class="verified" viewBox="0 0 40 40" role="img" aria-label="Verified">
-        <path fill="#fff" d="M27.413 14.319l2.254 2.287-11.43 11.5-6.835-6.93 2.244-2.258 4.587 4.581z"/>
-        <path fill="#0095f6" fill-rule="evenodd" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Zm7.415 11.225 2.254 2.287-11.43 11.5-6.835-6.93 2.244-2.258 4.587 4.581 9.18-9.18Z"/>
-      </svg>
-    </a>
+    <div class="group">
+      <a class="btn btn-ig rise" style="animation-delay:.18s" href="https://www.instagram.com/_paulgeorgoudis/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.3"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></svg>
+        <span><span class="sr-only">Instagram </span>@_paulgeorgoudis</span>
+        <!-- Instagram's own verified badge (path taken from instagram.com); white check sits behind the cut-out -->
+        <svg class="verified" viewBox="0 0 40 40" role="img" aria-label="Verified">
+          <path fill="#fff" d="M27.413 14.319l2.254 2.287-11.43 11.5-6.835-6.93 2.244-2.258 4.587 4.581z"/>
+          <path fill="#0095f6" fill-rule="evenodd" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Zm7.415 11.225 2.254 2.287-11.43 11.5-6.835-6.93 2.244-2.258 4.587 4.581 9.18-9.18Z"/>
+        </svg>
+      </a>
 
-    <a class="btn btn-tt rise" style="animation-delay:.24s" href="https://www.tiktok.com/@_paulgeorgoudis" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <defs><path id="tt" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></defs>
-        <!-- TikTok's cyan/red offset look -->
-        <use href="#tt" fill="#25f4ee" transform="translate(-1 -.8)"/>
-        <use href="#tt" fill="#fe2c55" transform="translate(1 .8)"/>
-        <use href="#tt" fill="#fff"/>
-      </svg>
-      <span><span class="sr-only">TikTok </span>@_paulgeorgoudis</span>
-    </a>
+      <a class="btn btn-tt rise" style="animation-delay:.24s" href="https://www.tiktok.com/@_paulgeorgoudis" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <defs><path id="tt" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></defs>
+          <!-- TikTok's cyan/red offset look -->
+          <use href="#tt" fill="#25f4ee" transform="translate(-1 -.8)"/>
+          <use href="#tt" fill="#fe2c55" transform="translate(1 .8)"/>
+          <use href="#tt" fill="#fff"/>
+        </svg>
+        <span><span class="sr-only">TikTok </span>@_paulgeorgoudis</span>
+      </a>
 
-    <a class="btn btn-mail rise" style="animation-delay:.3s" href="mailto:paulgeotrades@gmail.com">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="M3 6.5l9 6.5 9-6.5"/></svg>
-      Email Me
-    </a>
+      <a class="btn btn-mail rise" style="animation-delay:.3s" href="mailto:paulgeotrades@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="M3 6.5l9 6.5 9-6.5"/></svg>
+        Email Me
+      </a>
+    </div>
 
-    <a class="btn btn-feature btn-dc rise" style="animation-delay:.38s" href="https://discord.gg/geotrades" target="_blank" rel="noopener">
-      <span class="edge" aria-hidden="true"></span>
-      <span class="headline">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>
-        <span>Free Discord Community</span>
-      </span>
-      <span class="sub">discord.gg/<b>geotrades</b></span>
-    </a>
+    <div class="group">
+      <a class="btn btn-feature btn-dc rise" style="animation-delay:.38s" href="https://discord.gg/geotrades" target="_blank" rel="noopener">
+        <span class="edge" aria-hidden="true"></span>
+        <span class="headline">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>
+          <span>Free Discord Community</span>
+        </span>
+        <span class="sub">discord.gg/<b>geotrades</b></span>
+      </a>
+    </div>
 
-    <a class="btn btn-feature btn-fn rise" style="animation-delay:.46s" href="https://fundednext.com/futures/?fpr=GEOO" target="_blank" rel="noopener sponsored">
-      <img src="images/fundednext-futures.png" alt="FundedNext Futures" width="999" height="105">
-      <span class="sub">Code <b>GEOO</b> at checkout</span>
-    </a>
+    <div class="group">
+      <a class="btn btn-feature btn-fn rise" style="animation-delay:.46s" href="https://fundednext.com/futures/?fpr=GEOO" target="_blank" rel="noopener sponsored">
+        <img src="images/fundednext-futures.png" alt="FundedNext Futures" width="999" height="105">
+        <span class="sub">Code <b>GEOO</b> at checkout</span>
+      </a>
 
-    <a class="btn btn-feature btn-lv rise" style="animation-delay:.54s" href="https://lvlupfutures.com/" target="_blank" rel="noopener sponsored">
-      <img src="images/lvlup-futures.svg" alt="LVLUP Futures" width="598" height="62">
-      <span class="sub">Code <b>GEO</b> at checkout</span>
-    </a>
-
-
+      <a class="btn btn-feature btn-lv rise" style="animation-delay:.54s" href="https://lvlupfutures.com/" target="_blank" rel="noopener sponsored">
+        <img src="images/lvlup-futures.svg" alt="LVLUP Futures" width="598" height="62">
+        <span class="sub">Code <b>GEO</b> at checkout</span>
+      </a>
+    </div>
   </nav>
 
 </main>
